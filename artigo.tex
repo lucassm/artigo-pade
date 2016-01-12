@@ -119,6 +119,21 @@ agents, power engineering applications, power system restoration, software tools
 
 \IEEEpeerreviewmaketitle
 
+\section*{Nomenclature}
+
+\begin{description}[\IEEEsetlabelwidth{TCP/IP}\IEEEusemathlabelsep]
+  \item[ACL] Agent Communication Language
+  \item[AMS] Agent Management System
+  \item[AA] Agente Alimentador
+  \item[AD] Agente Dispositivo
+  \item[FIPA] Foundation for Intelligent Physical Agents
+  \item[IED] Intelligent Electronic Device
+  \item[JADE] Java Agent Development Framework
+  \item[SMRA] Sistema Multiagente de Recomposição Automática
+  \item[TCP/IP] Transmission Control Protocol/Internet Protocol
+  \item[WLAN] Wireless Local Area Network
+\end{description}
+
 \section{Introduction}
 
 \IEEEPARstart{S}{mart} grid (SG) consiste em um conceito abrangente que provê inovações tecnológicas às redes elétricas atuais, visando adequar os seguimentos de geração, transmissão e distribuição de energia, às novas demandas do setor elétrico no século XXI, que incluem manter a perspectiva social do fornecimento de energia e o equilíbrio entre crescimento econômico e desenvolvimento ambientalmente sustentável [1], [2]. Neste cenário de mudanças, são desafios enfrentados pelas concessionárias de energia do mundo inteiro a diversificação da matriz energética, gerenciamento de ativos, conservação de energia e redução dos impactos ambientais [3].
@@ -127,7 +142,7 @@ As SG, cerne destas evoluções, convergem para uma arquitetura de sistema de co
 
 Neste ambiente de inovações e quebra de paradigmas, tornou-se crescente o interesse dos pesquisadores pelo uso de Sistemas Multiagentes (MAS) para desenvolvimento de funções de automação com inteligência distribuída aplicadas a sistemas elétricos [6], [7]. Com MAS, problemas complexos podem ser decompostos e solucionados de forma mais simples. Os agentes, que compõem o MAS, podem ser modelados e distribuídos de acordo com a distribuição do problema. Nos últimos anos, estas características motivaram várias pesquisas, desenvolvimentos e implantações de MAS aplicados no controle e operação de sistemas elétricos, abrangendo áreas como gerenciamento e controle de micorredes, geração e recursos energéticos distribuídos [8], análise dos mecanismos de leilões no mercado de energia [9], gerenciamento e controle de redes de distribuição de energia [10], estimação de estados [11], avaliação da confiabilidade do sistema elétrico [12], reactive power control [13], adaptive protection [14], distribution transformer management [15], substation automation [16], and automatic restoration systems [6], [7], [17]–[26]. 
 
-Dentro deste contexto, neste artigo é apresentada a plataforma PADE (Python Agent Development framework), para desenvolvimento, execução e monitoramento de agentes baseada no padrão FIPA e um sistema multiagente para recomposição automática (MARS) de rede de distribuição de energia, desenvolvido em PADE, para teste e validação da referida plataforma. O MARS foi implantado em diferentes plataformas computacionais integradas via rede local aos IED de proteção padrão IEC 61.850, no laboratório de redes elétricas inteligentes da Universidade Federal do Ceará. Os testes realizados com o MARS integrado aos IED de proteção evidenciaram o potencial da plataforma PADE para desenvolvimento de funções inteligentes e distribuídas aplicadas às SG.
+Dentro deste contexto, neste artigo é apresentada a plataforma PADE (Python Agent Development framework), para desenvolvimento, execução e monitoramento de agentes baseada no padrão FIPA e um sistema multiagente para recomposição automática (MARS) de rede de distribuição de energia, desenvolvido em PADE, para teste e validação da referida plataforma. O MARS foi implantado em diferentes plataformas computacionais integradas via rede local aos IED de proteção padrão IEC 61.850, no laboratório de redes elétricas inteligentes da Universidade Federal do Ceará.
 
 Este trabalho está dividido da seguinte forma: na Seção dois são definidos o MAS e suas características, na Seção três são discutidos alguns dos padrões FIPA utilizados para o desenvolvimento do PADE, na Seção quatro o desenvolvimento do framework PADE é mostrado, na Seção cinco são realizados testes e exemplos com o framework. O artigo é finalizado com uma breve conclusão a respeito do tema.
 
@@ -285,13 +300,14 @@ Essas funcionalidades foram criadas para compor um framework de desenvolvimento 
 
  \begin{itemize}
    \item Abstração para construção de agentes e seus comportamentos utilizando conceitos de orientação a objetos;
-  \item Módulo para inicialização do ambiente de execução de agentes, inteiramente em código Python;  
+  \item Ambiente de execução de agentes, flexível e baseado em sessões de usuários;
   \item Módulo para construção e tratamento de mensagens no padrão FIPA-ACL;
   \item Módulo para filtragem de mensagens;
   \item Módulo para a implementação dos protocolos definidos pela FIPA;
   \item Módulo para implementação de comportamentos cíclicos e temporais;
-  \item Módulo para interação com banco de dados;
+  \item Armazenamento de mensagens em banco de dados para análises futuras;
   \item Possibilidade de envio de objetos serializados como conteúdo das mensagens FIPA-ACL;
+  \item Interface gráfica de interação multiplataforma baseada em tecnologias web.
  \end{itemize}
 
 Além dessas funcionalidades, o PADE é de fácil instalação e configuração, multiplataforma, podendo ser instalado e utilizado em hardwares embarcados que executam sistema operacional Linux, como Raspberry Pi e BeagleBone Black, bem como sistema operacional Windows.
@@ -304,7 +320,7 @@ Twisted é um mecanismo de rede, assíncrono, baseado em eventos e escrito em Py
 
 Twisted também oferece ferramentas de baixo nível para que protocolos genéricos sejam implementados na camada de aplicação de maneira fácil e rápida. Foram estas as ferramentas utilizadas no desenvolvimento do framework PADE.
 
-\subsubsection{Programação Assíncrona Orientada a Evnetos} 
+\subsubsection{Programação Assíncrona Orientada a Eventos} 
 
 Quando sistemas distribuídos são desenvolvidos baseados no paradigma de programação síncrona, existem duas escolhas para o desenvolvedor: não tratar requisições externas enquanto um evento é processado ou desenvolver a aplicação fazendo uso de threads, que por vezes pode introduzir complexidade extra ao software.
 
@@ -362,7 +378,7 @@ Na \autoref{fig:agentes_twisted} são mostrados os componentes do Twisted, que a
 
 \subsection{Python Agent DEvelopment framework}
 
-Nesta seção é mostrado o desenvolvimento de um framework para desenvolvimento de sistemas multiagentes: o Python Agent DEvelopemnt framework (PADE), que permite a implementação, execução e monitoramento de um MAS em ambiente distribuído. Entre muitas vantagens PADE possui uma abordagem clara e fácil fazendo uso da principal funcionalidade do Python: simplicidade, além de prover acesso facilitado entre agentes sendo executados em diferentes dispositivos.
+Nesta seção é mostrado a implementação de um framework para desenvolvimento de sistemas multiagentes: o Python Agent DEvelopemnt framework (PADE), que permite modelagem, execução e monitoramento de um MAS em ambiente distribuído. Entre muitas vantagens PADE possui uma abordagem clara e fácil fazendo uso da principal funcionalidade do Python: simplicidade, além de prover acesso facilitado entre agentes sendo executados em diferentes dispositivos.
 
 Utilizando como base de implementação o framework Twisted, foi desenvolvido o PADE, um framework para desenvolvimento, gerenciamento e execução de MAS em Python. O PADE segue alguns dos padrões estabelecidos pela FIPA, que visam interoperabilidade entre MAS desenvolvidos em diferentes plataformas, buscando sempre uma abordagem de comunicação mais direta e objetiva.
 
@@ -373,10 +389,11 @@ O framework PADE é composto por sete módulos principais que agrupam suas funci
 \begin{itemize}
   \item acl: implementa alguns dos padrões FIPA de comunicação entre agentes, como por exemplo a possibilidade de composição de mensagens no padrão FIPA-ACL, definidos em [44]–[46].
   \item behaviours: implementa alguns dos comportamentos e protocolos definidos e padronizados pela FIPA para execução pelos agentes, [47]–[49];
-  \item core: principal módulo do PADE, onde são implementados os algoritmos de cliente e servidor dos agentes por meio do framework Twisted. É nesse módulo que estão implementadas as funções de execução de agentes definidos pelo usuário e dos agentes padrões: AMS e Sniffer, definidos em [50];
-  \item db: módulo que implementa a comunicação do núcleo do framework PADE com um banco de dados. Por meio deste módulo o framework pode, por exemplo, armazenar todas as mensagens trocadas pelos agentes;
+  \item core: principal módulo do PADE, onde são implementados os algoritmos de cliente e servidor dos agentes por meio do framework Twisted. É nesse módulo que estão implementadas as funções de execução de agentes definidos pelo usuário e do AMS;
   \item gui: onde estão implementadas as classes que definem a interface gráfica do AMS;
-  \item misc: módulo onde estão implementadas algumas funcionalidades de uso geral, como, por exemplo, exibir mensagens de forma padronizada na tela;
+  \item web: implementa o servidor web que serve a interface gráfica do PADE e interage com o banco de dados de registro de sessões, agentes e mensagens;
+  \item cli: implementa as funcionalidades de interação com a plataforma PADE por meio de uma interface de linha de comandos;
+  \item misc: módulo onde estão implementadas algumas funcionalidades de uso geral, como, por exemplo, exibir mensagens de forma padronizada na tela e o loop de inicialização dos agentes;
   \item tests: módulo de testes, a ser implementado futuramente.
 \end{itemize}
 
@@ -398,7 +415,7 @@ Um agente na plataforma é identificado pelo seu AID (Agent IDentifier) que tem 
 
 O Agent Management System (AMS) desempenha função muito importante para a plataforma de MAS e de acordo com o padrão [50], que define as características e atribuições do AMS, é mandatória a presença de um gerenciador na plataforma.
 
-No PADE, o AMS exerce funções de controle e supervisão e mantém uma tabela que contém os identificadores dos agentes. De acordo ainda com a FIPA, os agentes precisam registrar-se no AMS para adquirirem um identificador válido, sendo assim capazes de se comunicar com outros agentes.
+No PADE, o AMS exerce funções de controle e supervisão e mantém uma tabela que contém os identificadores dos agentes. De acordo ainda com a FIPA, os agentes precisam registrar-se no AMS para adquirirem um identificador válido, sendo assim capazes de se comunicar com outros agentes. É também papel do AMS armazenar as mensagens trocadas entre os agentes no banco de dados e verificar quais agentes já não estão mais conectados à aplicação.
 
 No PADE, o AMS é um agente, e necessariamente deve ser o primeiro agente a ser lançado, já que os outros precisam do AMS para se cadastrar. 
 
@@ -431,26 +448,28 @@ Os agentes Bob, Eva e Alice, inicialmente estão fora da plataforma PADE. Primei
 
 Dessa forma quando um agente deseja se comunicar com outro, busca em sua própria tabela o endereço do agente destino, sem precisar perguntar o endereço ao agente AMS, e mesmo que o agente AMS seja desativado, os agentes ainda serão capazes de se comunicar, pois possuem a tabela de endereços dos agentes permanecentes na rede.
 
-Logicamente sem a presença de um agente AMS na plataforma, as funções de supervisão, registro e controle ficam desprovidas pela plataforma. Mas a comunicação dos agentes que já estavam na plataforma continua possível, o que em muitos casos pode ser útil, no entanto esta deve ser uma situação temporária, uma vez que depois que o agente AMS é desativado, a tabela de agentes não poderá mais ser atualizada.
+No PADE, o agente AMS também tem a função de armazenar as mensagens trocadas pelos agentes, que sempre que recebem uma mensagem, enviam uma cópia ao AMS.
 
-\subsubsection{O Agente Snnifer}
+\subsubsection{Interface Gráfica do PADE}
 
-Outro componente muito útil em uma plataforma multiagente é o agente Sniffer. No PADE, o agente Sniffer tem a função de enviar mensagens periódicas aos agentes para realizar testes de conexão. Caso o agente não responda à mensagem, é informado ao AMS que o agente não está mais na plataforma e, assim, a tabela dos outros agentes é atualizada.
+A interface gráfica do PADE é provida por um servidor WEB que tem comunicação direta com o banco de dados da aplicação e gerencia o acesso às informações disponibilizadas sobre as sessões da plataforma, os agentes executados e também sobre as mensagens trocadas.
 
-Outra função que é executada pelo agente Sniffer é o registro das conversas realizadas pelos agentes. Essas mensagens tanto podem ser armazendas em um arquivo de log como podem ser exibidas em uma interface gráfica. Na  \autoref{fig:guis} é mostrada a janela principal da interface gráfica do agente Sniffer, que exibe na coluna da esquerda todos os agentes que estão ativos e que possuem cadastro junto ao AMS e na coluna da direita as mensagens recebidas pelo agente selecionado, juntamente com a janela secundária da interface do agente Sniffer, que é lançada ao selecionar alguma das mensagens exibidas na janela principal, onde são mostrados todos os campos da mensagem no padrão ACLMessage recebida pelo agente selecionado.
+Na  \autoref{fig:guis} é mostrada a janela principal da interface gráfica WEB do PADE, que exibe as sessões já executadas na plataforma. Nas sessões estão presenteas os agentes executados na sessão e em cada agente é possível verificar quais mensagens foram recebidas pelo agente, e quais as informações estavam contidas na mensagem. Em resumo a interface gráfica WEB é uma interface amigável e organizada de consultar as informações contidas no banco de dados do PADE. Outra funcionalidade muito útil da interface gráfica WEB é a exibição das trocas de mensagens entre os agentes em forma de diagrama de sequência.
 
-\begin{figure*}[!htb]
+\begin{figure}[!htb]
         \centering
-        \includegraphics[width=5.0in]{Figuras/guis.png}
-        \caption{\label{fig:guis} Interface gráfica de registro de mensagens trocadas entre agentes no PADE.}
-\end{figure*} 
+        \includegraphics[width=2.0in]{Figuras/web_gui.png}
+        \caption{\label{fig:guis} Interface gráfica de registro de sessões no PADE.}
+\end{figure} 
 
 \subsubsection{Estrutura de um Agente Modelado no PADE}
 
 A estrura de código de um agente modelado por meio do framework PADE é bem simples e tem um padrão definido. Este padrão consiste em:
 
-classes que herdam de um comportamento/protocolo disponibilizado pelo PADE;
-uma classe que herda da classe Agent.
+\begin{itemize}
+    \item classes que herdam de um comportamento/protocolo disponibilizado pelo PADE;
+    \item uma classe que herda da classe Agent.
+\end{itemize}
 
 Dessa forma, um arquivo que modele um agente no PADE sempre terá uma única classe que representa a instância do agente, e quantas classes forem necessárias para representar instâncias dos comportamentos definidos para os agentes.
 
@@ -467,6 +486,12 @@ Por exemplo, para implementar um comportamento do tipo Contractnet Iniciante no 
 Nesta sessão será apresentada a utilização do framework PADE para o desenvolvimento de um sistema multiagente de recomposição automática de alimentadores da rede elétrica de distribuição. O sistema de recomposição deve ser capaz de, na ocorrência de uma falta, identificar o setor faltoso, isolá-lo do restante da rede e recompor os setores desenergizados, mas que não possuem defeito. Isso pode ser feito por que existem chaves normalmente fechadas (NF) ao longo da rede que são utilizadas para isolar os setores defeituosos e chaves normalmente abertas (NA) entre alimentadores distintos que podem ser utilizadas para reenergizar o alimentador por outros caminhos.
 
 O problema da recomposição da rede elétrica mediante a ocorrência de uma falta é tratado como um problema de otimização com múltiplos objetivos, conflitantes entre sí, pois é necessário maximizar o número de consumidores re-energizados, mas com o menor número de manobras possíveis e respeitando as restrições operacionais do sistema, como por exemplo, sobrecarga das fontes e dos condutores da rede.
+
+O SMRA é composto por dois tipos de agentes apenas, o agente Alimentador (AA) e o agente Dispositivo (AD). Esses dois tipos de agentes estão ambarcados em hardwares distribuídos nas subestações do sistema elétrico em questão, conectados via rede de dados. Para cada alimentador físico das subestações, existe um hardware onde estão presentes um par AA e AD.
+
+O agente Alimentador possui as principais funcionalidades do sistema de recomposição, automático. É de responsabilidade do agente alimentador, negociar potência com os demais agentes alimentadores, que podem realizar uma restauração e também analisar as restrições da rede por meio da execução de ferramentas como fluxo de carga.
+
+O agente Dispositivo tem o papel de detectar qualquer problema que cause a desenergização dos setores do alimentador, isolar o setor do sistema que está sob falta e enviar comandos de abertura ou fechamento para os IED que controlam as chaves presentes na rede. É o agente Dispositivo que se comunica diretamente com os IED do sistema, portanto, os AD precisam ter implementados os protocolos de comunicação utilizados pelos IED. Neste caso teste os protocolos utilizados foram os estabelecidos pela norma IEC 61850, GOOSE e MMS.
 
 Na \autoref{fig:rede_6_b} é mostrado um sistema elétrico simplificado com duas subestações S1 e S2. A subestação S1 possui dois alimentadores S1\_AL1, que alimenta os setores A, B, C e F e o alimentador S1\_AL2 que alimenta os setores G, H e I. Na subestação S2 existe apenas um alimenador, o S2\_AL1 que alimenta dos setores D e E. Na representação adotada, as chaves NF são as linhas contínuas entre os setores, já as chaves NA são representadas por linhas racejadas.
 
@@ -489,9 +514,9 @@ Após a ocorrência de uma falta permanente no setor A, a proteção irá atuar 
 
 Na ocorrência desses eventos o SMRA deve iniciar sua atuação, percebendo a ocorrência da falta elétrica, identificando o setor que está com defeito e imediatamente isolando-o do restante do sistema, por meio da abertura das chaves 2 e 3.
 
-Quem realiza estes procedimentos iniciais de identificação do defeito, isolação do setor e comunicação com os dispositivos da rede é o agente Dispositivo, que depois de realizados estes procedimentos, comunica a ocorrência para o agente Alimentador que é o responsável por negociar com outros agentes a recomposição dos setores desenergizados, no caso B, C e F, além de analisar as restrições operacionais, ao executar um fluxo de carga de varredura direta-inversa sobre a topologia de rede proposta, só tomando alguma decisão após todos os critérios terem sido verificados e satisfeitos.  
+Quem realiza estes procedimentos iniciais de identificação do defeito, isolação do setor e comunicação com os dispositivos da rede é o AD, que depois de realizados estes procedimentos, comunica a ocorrência para o AA que é o responsável por negociar com outros AA a recomposição dos setores desenergizados, no caso B, C e F, além de analisar as restrições operacionais, ao executar um fluxo de carga de varredura direta-inversa sobre a topologia de rede proposta, só tomando alguma decisão após todos os critérios terem sido verificados e satisfeitos.  
 
-A configuração final da recomposição pode ser visualizada na \autoref{fig:rede_recomposta}. 
+A configuração final da recomposição pode ser visualizada na \autoref{fig:rede_recomposta}.
 
 \begin{figure}[htb]
     \centering
@@ -499,7 +524,7 @@ A configuração final da recomposição pode ser visualizada na \autoref{fig:re
     \caption{\label{fig:rede_recomposta} Topologia da rede após a poda do setor F do alimentador S2-AL1.}
 \end{figure}
 
-Foram realizados testes e simulações com o SMRA desenvolvido utilizando o PADE. Foram utilizados na infraestrutura de testes três IED SEL-751 reais e comunicando via protocolos IEC 61850, interconectados por meio de um switch de rede também da SEL. Aos IED foi conectada uma mala de testes Conprove CE-6006 que simula o secundário do TC na ocorrência de uma falta na rede elétrica. Os agentes estão embarcados em computadores, além de hardwares Raspberry Pi e BeagleBone Black, conforme mostrado na arquitetura da \autoref{fig:top_teste}.
+Foram realizados testes e simulações com o SMRA desenvolvido utilizando o PADE. Foram utilizados na infraestrutura de testes três IED SEL-751 reais e comunicando via protocolos IEC 61850, interconectados por meio de um switch de rede também da SEL. Aos IED foi conectada uma mala de testes Conprove CE-6006 que simula o secundário do TC na ocorrência de uma falta na rede elétrica. Os agentes estão embarcados em computadores e hardwares Raspberry Pi e BeagleBone Black, conforme mostrado na arquitetura da \autoref{fig:top_teste}. Para cada alimentador físico das subestações, existe um hardware onde estão presentes um par AA e AD.
 
 \begin{figure}[htb]
     \centering
@@ -507,7 +532,7 @@ Foram realizados testes e simulações com o SMRA desenvolvido utilizando o PADE
     \caption{\label{fig:top_teste} Topologia física de testes do SMRA.}    
 \end{figure}
 
-Os agentes foram embarcados nos dispositivos computacionais (desktop, computador industrial, Raspberry Pi e BeagleBone Black) simulando um ambiente computacional distribuído e conectado via rede Ethernet por meio do switch SEL-2730, conforme mostrado na \autoref{fig:top_teste}. Na \autoref{tab:info_rede} são mostrados os dispositivos que são utilizados como contêineres de agentes e que fazem parte da infraestrutura de execução do SMRA, integrados em rede Ethernet e comunicando-se via protocolos estabelecidos pela FIPA. Os IED que também fazem parte da infraestrutura de comunicação Ethernet, podendo receber comandos por meio do protocolo MMS e publicar mensagens utilizando o protocolo GOOSE, também estão listados na \autoref{tab:info_rede}.
+Os agentes foram embarcados em dispositivos computacionais  simulando um ambiente distribuído e conectado via rede Ethernet por meio do switch SEL-2730, conforme mostrado na \autoref{fig:top_teste}. Na \autoref{tab:info_rede} são mostrados os dispositivos que são utilizados como contêineres de agentes e que fazem parte da infraestrutura de execução do SMRA, integrados em rede Ethernet e comunicando-se via protocolos estabelecidos pela FIPA. Os IED que também fazem parte da infraestrutura de comunicação Ethernet, podendo receber comandos por meio do protocolo MMS e publicar mensagens utilizando o protocolo GOOSE, também estão listados na \autoref{tab:info_rede}.
 
 \begin{table}[htb]
     \centering
@@ -559,14 +584,13 @@ Levando em consideração a rede de testes mostrada na \autoref{fig:top_teste}, 
         & S2\_AD1 & Dispositivo \\
         \bottomrule
     \end{tabular}
-    % \legend{Fonte: Própria do autor.}
 \end{table}
 
 \section{Conclusão}
 
 PADE é um framework para desenvolvimento, execução e monitoramento de sistemas multiagentes desenvolvido em Python com base no framework Twisted para desenvolvimento de sistemas distribuídos assíncronos baseados em eventos. PADE é uma alternativa às plataformas de desenvolvimento e execução de agentes já existentes, possibilitando ao SMRA ser implementado em uma linguagem de programação moderna, com utilização do paradigma de orientação a objetos, de fácil aprendizado e com recursos para o desenvolvimento de sistemas distribuídos.
 
-O PADE possui uma filosofia de comunicação distribuída com independência de agente gerenciador para manutenção da comunicação, além de poder ser executado em hardware embarcado com procesador ARM de 700 MHz de frequência e 512 MB de memória RAM. 
+O PADE possui uma filosofia de comunicação distribuída com independência de agente gerenciador para manutenção da comunicação, além de poder ser executado em hardware embarcado com processamento relativamente limitado.
 
 O PADE utiliza os aspectos recomendados pela FIPA na implementação de plataformas multiagentes, fazendo uso de uma abordagem direta e objetiva. Isso confere ao PADE a característica de simplicidade de implementação e de execução. Alguns dos aspectos disponibilizados pelo PADE para o desenvolvimento e execução de agentes, são:
 
