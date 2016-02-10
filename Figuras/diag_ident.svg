@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 726.15999 566.00008"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   width="100%"
+   height="100%"
+   sodipodi:docname="diag_ident.eps">
+  <metadata
+     id="metadata111">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>blockdiag</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1301"
+     inkscape:window-height="744"
+     id="namedview109"
+     showgrid="false"
+     inkscape:zoom="0.7770766"
+     inkscape:cx="405.1833"
+     inkscape:cy="267.13259"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs_block">
+    <filter
+       height="1.5039999"
+       id="filter_blur"
+       inkscape:collect="always"
+       width="1.1575"
+       x="-0.078749999"
+       y="-0.252"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3780"
+         inkscape:collect="always"
+         stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title
+     id="title7">blockdiag</title>
+  <desc
+     id="desc9">seqdiag{
+    activation = none;
+    
+    Agente_1 -&gt; AMS [label='REGISTER'];
+    AMS -&gt; Agente_1 [label='OK'];
+    Agente_2 -&gt; AMS [label='REGISTER'];
+    AMS -&gt; Agente_2 [label='OK'];
+    AMS -&gt; Agente_1 [label='NEW AGENT ONLINE'];
+    Agente_3 -&gt; AMS [label='REGISTER'];
+    AMS -&gt; Agente_3 [label='REFUSE'];
+    Agente_3 -&gt; AMS [label='REGISTER'];
+    AMS -&gt; Agente_3 [label='OK'];
+    AMS -&gt; Agente_1 [label='NEW AGENT ONLINE'];
+    AMS -&gt; Agente_2 [label='NEW AGENT ONLINE'];
+}</desc>
+  <rect
+     height="40"
+     style="opacity:0.7;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter_blur)"
+     width="128"
+     x="11.08"
+     y="11.079976"
+     id="rect11" />
+  <rect
+     height="40"
+     style="opacity:0.7;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter_blur)"
+     width="128"
+     x="203.08"
+     y="11.079976"
+     id="rect13" />
+  <rect
+     height="40"
+     style="opacity:0.7;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter_blur)"
+     width="128"
+     x="395.07999"
+     y="11.079976"
+     id="rect15" />
+  <rect
+     height="40"
+     style="opacity:0.7;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter_blur)"
+     width="128"
+     x="587.08002"
+     y="11.079976"
+     id="rect17" />
+  <path
+     d="m 72.08,45.079976 0,519.920104"
+     id="path19"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="m 264.08,45.079976 0,519.920104"
+     id="path21"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="m 456.08,45.079976 0,519.920104"
+     id="path23"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="m 648.08,45.079976 0,519.920104"
+     id="path25"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <rect
+     height="40"
+     width="128"
+     x="8.0799999"
+     y="5.0799756"
+     id="rect27"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="72.080002"
+     y="31.079975"
+     id="text29"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">Agente_1</text>
+  <rect
+     height="40"
+     width="128"
+     x="200.08"
+     y="5.0799756"
+     id="rect31"
+     style="fill:#ececec;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="18"
+     x="264.07999"
+     y="31.079975"
+     id="text33"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">AMS</text>
+  <rect
+     height="40"
+     width="128"
+     x="392.07999"
+     y="5.0799756"
+     id="rect35"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="456.07999"
+     y="31.079975"
+     id="text37"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">Agente_2</text>
+  <rect
+     height="40"
+     width="128"
+     x="584.08002"
+     y="5.0799756"
+     id="rect39"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="648.08002"
+     y="31.079975"
+     id="text41"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">Agente_3</text>
+  <path
+     d="m 80.08,100.07998 176,0"
+     id="path43"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="304,131 312,135 304,139 "
+     id="polygon45"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-34.920024)" />
+  <path
+     d="m 80.08,141.07998 176,0"
+     id="path47"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="144,196 136,200 144,204 "
+     id="polygon49"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-58.920024)" />
+  <path
+     d="m 272.08,180.07998 176,0"
+     id="path51"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="328,265 336,269 336,261 "
+     id="polygon53"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-84.920024)" />
+  <path
+     d="m 272.08,217.07998 176,0"
+     id="path55"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="496,326 504,330 496,334 "
+     id="polygon57"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-112.92002)" />
+  <path
+     d="m 80.08,260.07998 176,0"
+     id="path59"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="144,399 144,391 136,395 "
+     id="polygon61"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-134.92002)" />
+  <path
+     d="m 272.08,303.07998 368,0"
+     id="path63"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="328,460 336,464 336,456 "
+     id="polygon65"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-156.92002)" />
+  <path
+     d="m 272.08,346.07998 368,0"
+     id="path67"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="688,521 696,525 688,529 "
+     id="polygon69"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-178.92002)" />
+  <path
+     d="m 272.08,397.07998 368,0"
+     id="path71"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="328,590 336,594 336,586 "
+     id="polygon73"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-192.92002)" />
+  <path
+     d="m 272.08,446.07998 368,0"
+     id="path75"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="688,651 696,655 688,659 "
+     id="polygon77"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-208.92002)" />
+  <path
+     d="m 80.08,493.07998 176,0"
+     id="path79"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="144,716 136,720 144,724 "
+     id="polygon81"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-226.92002)" />
+  <path
+     d="m 272.08,534.07998 176,0"
+     id="path83"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="496,781 504,785 496,789 "
+     id="polygon85"
+     style="fill:#000000;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-55.92,-250.92002)" />
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="138.88579"
+     y="91.937767"
+     id="text87"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">REGISTER</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="12"
+     x="237.79558"
+     y="134.75768"
+     id="text89"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">OK</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="398.50336"
+     y="174.70192"
+     id="text91"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">REGISTER</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="12"
+     x="292.08951"
+     y="210.98514"
+     id="text93"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">OK</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="96"
+     x="174.55379"
+     y="252.39273"
+     id="text95"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">NEW AGENT ONLINE</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="591.07715"
+     y="297.7019"
+     id="text97"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">REGISTER</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="36"
+     x="306.83609"
+     y="338.86279"
+     id="text99"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">REFUSE</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="48"
+     x="595.58124"
+     y="391.70193"
+     id="text101"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">REGISTER</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="12"
+     x="288.58405"
+     y="440.21939"
+     id="text103"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">OK</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="96"
+     x="178.96136"
+     y="485.16525"
+     id="text105"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">NEW AGENT ONLINE</text>
+  <text
+     font-size="11"
+     font-style="normal"
+     font-weight="normal"
+     textLength="96"
+     x="348.87634"
+     y="526.84778"
+     id="text107"
+     style="font-size:18px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;font-family:Latin Modern Mono;-inkscape-font-specification:Latin Modern Mono">NEW AGENT ONLINE</text>
+</svg>

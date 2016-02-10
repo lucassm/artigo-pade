@@ -1,0 +1,21 @@
+seqdiag{
+    activation = none;
+    
+    S1_AD1 -> S1_AL1 [label='REQUEST: FAIL'];
+    S1_AL1 -> S1_AD1 [label='INFORM: OK'];
+    S1_AL1 -> S1_AL2 [label='CFP: POWER REQUEST'];
+    S1_AL1 -> S2_AL1 [label='CFP: POWER REQUEST'];
+    S1_AL1 <- S1_AL2 [label='PROPOSE: 80'];
+    S1_AL1 <- S2_AL1 [label='PROPOSE: 60'];
+    S1_AL1 -> S1_AL2 [label='ACCEPT-PROPOSAL: YES'];
+    S1_AL1 -> S2_AL1 [label='REFUSE-PROPOSAL: NO'];
+    S1_AL2 -> S1_AD2 [label='REQUEST: CLOSE CH10'];
+    S1_AD2 -> S1_AL2 [label='INFORM: OK'];
+    S1_AL1 <- S1_AL2 [label='INFORM: OK'];
+    S1_AL1 -> S2_AL1 [label='CFP: POWER REQUEST'];
+    S1_AL1 <- S2_AL1 [label='PROPOSE: 60'];
+    S1_AL1 -> S2_AL1 [label='ACCEPT-PROPOSAL: YES'];
+    S2_AL1 -> S2_AD1 [label='REQUEST: CLOSE CH6 / OPEN CH5'];
+    S2_AD1 -> S2_AL1 [label='INFORM: OK'];
+    S2_AL1 -> S1_AL1 [label='INFORM: OK'];
+}

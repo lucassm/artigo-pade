@@ -1,0 +1,15 @@
+seqdiag{
+    activation = none;
+    
+    Agente_1 -> AMS [label='REGISTER'];
+    AMS -> Agente_1 [label='OK'];
+    Agente_2 -> AMS [label='REGISTER'];
+    AMS -> Agente_2 [label='OK'];
+    AMS -> Agente_1 [label='NEW AGENT ONLINE'];
+    Agente_3 -> AMS [label='REGISTER'];
+    AMS -> Agente_3 [label='REFUSE'];
+    Agente_3 -> AMS [label='REGISTER'];
+    AMS -> Agente_3 [label='OK'];
+    AMS -> Agente_1 [label='NEW AGENT ONLINE'];
+    AMS -> Agente_2 [label='NEW AGENT ONLINE'];
+}

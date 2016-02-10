@@ -20,6 +20,7 @@
 \usepackage{cite}
 \usepackage{epstopdf}
 \usepackage{array}
+\usepackage{listings}
 
 \hypersetup{hidelinks}
 
@@ -119,16 +120,22 @@ agents, power engineering applications, power system restoration, software tools
 
 \IEEEpeerreviewmaketitle
 
-\section*{Nomenclature}
+\section*{Siglas e Abreviações}
 
 \begin{description}[\IEEEsetlabelwidth{TCP/IP}\IEEEusemathlabelsep]
-  \item[ACL] Agent Communication Language
-  \item[AMS] Agent Management System
   \item[AA] Agente Alimentador
+  \item[ACL] Agent Communication Language
   \item[AD] Agente Dispositivo
+  \item[AMS] Agent Management System
   \item[FIPA] Foundation for Intelligent Physical Agents
+  \item[GOOSE] Generic Object Oriented Substation Events
   \item[IED] Intelligent Electronic Device
   \item[JADE] Java Agent Development Framework
+  \item[MMS] Manufacturing Message Specification
+  \item[NA] Normalmente Aberta
+  \item[NF] Normalmente Fechada 
+  \item[PADE] Python Agent Development Framework
+  \item[SG] Smart Grid
   \item[SMRA] Sistema Multiagente de Recomposição Automática
   \item[TCP/IP] Transmission Control Protocol/Internet Protocol
   \item[WLAN] Wireless Local Area Network
@@ -136,11 +143,11 @@ agents, power engineering applications, power system restoration, software tools
 
 \section{Introduction}
 
-\IEEEPARstart{S}{mart} grid (SG) consiste em um conceito abrangente que provê inovações tecnológicas às redes elétricas atuais, visando adequar os seguimentos de geração, transmissão e distribuição de energia, às novas demandas do setor elétrico no século XXI, que incluem manter a perspectiva social do fornecimento de energia e o equilíbrio entre crescimento econômico e desenvolvimento ambientalmente sustentável [1], [2]. Neste cenário de mudanças, são desafios enfrentados pelas concessionárias de energia do mundo inteiro a diversificação da matriz energética, gerenciamento de ativos, conservação de energia e redução dos impactos ambientais [3].
+\IEEEPARstart{S}{mart} grid (SG) consiste em um conceito abrangente que provê inovações tecnológicas às redes elétricas atuais, visando adequar os seguimentos de geração, transmissão e distribuição de energia, às novas demandas do setor elétrico no século XXI, que incluem manter a perspectiva social do fornecimento de energia e o equilíbrio entre crescimento econômico e desenvolvimento ambientalmente sustentável \cite{ref:1}, \cite{ref:2}. Neste cenário de mudanças, são desafios enfrentados pelas concessionárias de energia do mundo inteiro a diversificação da matriz energética, gerenciamento de ativos, conservação de energia e redução dos impactos ambientais \cite{ref:3}.
 
-As SG, cerne destas evoluções, convergem para uma arquitetura de sistema de controle e monitormamento distribuído, munidas de tecnologias de informação e comunicação incorporadas aos processos de geração, transmissão, distribuição, consumo e armazenamento de energia elétrica, de forma a agregar mais segurança, proteção, confiabilidade, resiliência, eficiência e sustentabilidade ao sistema elétrico como um todo [3]. Esta arquitetura compreende uma SG com dispositivos eletrônicos inteligentes (IED), fluxo de energia e comunicação bidirecionais, geração distribuída, grande quantidade de sensores, capacidade de automonitoramento (self-monitoring), autorecomposição (self-healing), adaptabilidade, ilhamento, controle pervasivo distribuído e maior paticipação dos consumidores [3]–[5].
+As SG, cerne destas evoluções, convergem para uma arquitetura de sistema de controle e monitormamento distribuído, munidas de tecnologias de informação e comunicação incorporadas aos processos de geração, transmissão, distribuição, consumo e armazenamento de energia elétrica, de forma a agregar mais segurança, proteção, confiabilidade, resiliência, eficiência e sustentabilidade ao sistema elétrico como um todo \cite{ref:3}. Esta arquitetura compreende uma SG com dispositivos eletrônicos inteligentes (IED), fluxo de energia e comunicação bidirecionais, geração distribuída, grande quantidade de sensores, capacidade de automonitoramento (self-monitoring), autorecomposição (self-healing), adaptabilidade, ilhamento, controle pervasivo distribuído e maior paticipação dos consumidores \cite{ref:3, ref:4, ref:5}.
 
-Neste ambiente de inovações e quebra de paradigmas, tornou-se crescente o interesse dos pesquisadores pelo uso de Sistemas Multiagentes (MAS) para desenvolvimento de funções de automação com inteligência distribuída aplicadas a sistemas elétricos [6], [7]. Com MAS, problemas complexos podem ser decompostos e solucionados de forma mais simples. Os agentes, que compõem o MAS, podem ser modelados e distribuídos de acordo com a distribuição do problema. Nos últimos anos, estas características motivaram várias pesquisas, desenvolvimentos e implantações de MAS aplicados no controle e operação de sistemas elétricos, abrangendo áreas como gerenciamento e controle de micorredes, geração e recursos energéticos distribuídos [8], análise dos mecanismos de leilões no mercado de energia [9], gerenciamento e controle de redes de distribuição de energia [10], estimação de estados [11], avaliação da confiabilidade do sistema elétrico [12], reactive power control [13], adaptive protection [14], distribution transformer management [15], substation automation [16], and automatic restoration systems [6], [7], [17]–[26]. 
+Neste ambiente de inovações e quebra de paradigmas, tornou-se crescente o interesse dos pesquisadores pelo uso de Sistemas Multiagentes (MAS) para desenvolvimento de funções de automação com inteligência distribuída aplicadas a sistemas elétricos \cite{ref:6}, \cite{ref:7}. Com MAS, problemas complexos podem ser decompostos e solucionados de forma mais simples. Os agentes, que compõem o MAS, podem ser modelados e distribuídos de acordo com a distribuição do problema. Nos últimos anos, estas características motivaram várias pesquisas, desenvolvimentos e implantações de MAS aplicados no controle e operação de sistemas elétricos, abrangendo áreas como gerenciamento e controle de micorredes, geração e recursos energéticos distribuídos \cite{ref:8}, análise dos mecanismos de leilões no mercado de energia \cite{ref:9}, gerenciamento e controle de redes de distribuição de energia \cite{ref:10}, estimação de estados \cite{ref:11}, avaliação da confiabilidade do sistema elétrico \cite{ref:12}, reactive power control \cite{ref:13}, adaptive protection [14], distribution transformer management [15], substation automation [16], and automatic restoration systems \cite{ref:6}, [7], [17]–[26]. 
 
 Dentro deste contexto, neste artigo é apresentada a plataforma PADE (Python Agent Development framework), para desenvolvimento, execução e monitoramento de agentes baseada no padrão FIPA e um sistema multiagente para recomposição automática (MARS) de rede de distribuição de energia, desenvolvido em PADE, para teste e validação da referida plataforma. O MARS foi implantado em diferentes plataformas computacionais integradas via rede local aos IED de proteção padrão IEC 61.850, no laboratório de redes elétricas inteligentes da Universidade Federal do Ceará.
 
@@ -154,19 +161,19 @@ Ao longo dos anos, inúmeras plataformas para construção de MAS têm sido dese
 
 No momento de escolher a ferramenta mais adequada para sua aplicação, essa diversidade de plataformas torna-se um problema para os desenvolvedores. Neste sentido, visando subsidiar novos desenvolvedores na escolha da plataforma, vários trabalhos apresentam análise de desempenho e comparação de ferramentas de desenvolvimento de MAS [27], [30]–[37]. Em [27] os autores analisam agentes de vinte e quatro plataformas desenvolvidas por diferentes grupos acadêmicos e industriais, tomando como base os critérios e subcritérios apresentados na \autoref{tab:criterios}. No trabalho, os autores disponibilizam informações sobre as principais feramentas de desenvolvimento de MAS com o objetivo de facilitar a tomada de decisão do desenvolvedor, no momento da escolha da melhor ferramenta para sua aplicação.
 
-\begin{table}[!htb]
+\begin{table}[htb]
     \caption{Critérios de Avaliação das Plataformas de Desenvolvimento.}
     \label{tab:criterios}
     \centering
 
     \begin{tabular}{p{0.9in} p{2.0in}}
     \toprule
-    \multicolumn{1}{c}{\textbf{Critérios Principais}} & \multicolumn{1}{c}{\textbf{Subcritérios}} \\
+    \multicolumn{1}{c}{\textbf{Critérios}} & \multicolumn{1}{c}{\textbf{Subcritérios}} \\
     \midrule
     \midrule
-         \multirow{3}{0.9in}{Propriedades} & Desenvolvedor/organização, domínio primário, última versão, tipo de licença, plataforma aberta. \\
+         \multirow{3}{0.9in}{Características Gerais} & Desenvolvedor/organização, domínio primário, última versão, tipo de licença, plataforma aberta. \\
     \midrule
-        \multirow{3}{0.9in}{Usabilidade} & Simplicidade, capacidade de aprendizado, escalabilidade e compatibilidade com padrões, comunicação. \\
+        \multirow{3}{0.9in}{Usabilidade} & Simplicidade, capacidade de aprendizado, escalabilidade e compatibilidade com padrões, tipo de comunicação. \\
     \midrule
         \multirow{3}{0.9in}{Capacidade Operacional} & Desempenho, estabilidade, robustez, linguagem de programação e sistema operacional.\\
     \midrule
@@ -177,32 +184,35 @@ No momento de escolher a ferramenta mais adequada para sua aplicação, essa div
     \end{tabular}
 \end{table}
 
-Essa diversidade de plataformas, adicionada ao crescente interesse pela aplicação de MAS no setor elétrico, motivou um grupo de pesquisadores do IEEE a publicar dois importantes artigos que apresentam os conceitos relacionados a agentes e MAS, o estado da arte de MAS, o potencial da tecnologia de MAS para modelagem, simulação e controle de sistemas distribuídos inteligentes e destacam os desafios que devem ser superados para o avanço do uso dos MAS no setor elétrico [38], [39]. Na \autoref{tab:desafios} são apresentados os principais desafios identificados pelos autores em [38], [39] para aplicação do MAS na automação de sistemas elétricos.
+Essa diversidade de plataformas, adicionada ao crescente interesse pela aplicação de MAS no setor elétrico, motivou um grupo de pesquisadores do IEEE a publicar dois importantes artigos que apresentam os conceitos relacionados a agentes e MAS, o estado da arte de MAS, o potencial da tecnologia de MAS para modelagem, simulação e controle de sistemas distribuídos inteligentes e destacam os desafios que devem ser superados para o avanço do uso dos MAS no setor elétrico [38], [39]. 
 
-\begin{table}[!htb]
-    \caption{Desafios para Avanço dos MAS no Setor Elétrico}
-    \label{tab:desafios}
-    \centering
 
-    \begin{tabular}{p{0.9in} p{2.0in}}
-    \toprule
-    \multicolumn{1}{c}{\textbf{Critérios Principais}} & \multicolumn{1}{c}{\textbf{Subcritérios}} \\
-    \midrule
-    \midrule
-         \multirow{5}{0.9in}{Plataformas} & Plataforma com arquitetura aberta com características flexível e extensível para assegurar robustez para aplicação online e compatibilidade com outros sistemas por um longo período. \\
-    \midrule
-        \multirow{4}{0.9in}{Toolkits} & As tookits devem permitir o desenvolvimento de agentes em que comportamentos e capacidades possam ser reutilizados em diversas aplicações. \\
-    \midrule
-        \multirow{3}{0.9in}{Arquiteturas de agentes} & Arquiteruras de agentes de fácil compreensão para facilitar o desenvolvimento de projetos de agentes inteligentes.\\
-    \midrule
-        \multirow{8}{0.9in}{Domínio dos padrões interoperáveis} & Profissionais da área de engenharia absover o conhecimento sobre comunicação de agentes no padrão FIPA e adotar ontologias baseadas nos padrões IEC 61.850 e IEC 61.970/61.968 (Common Information Model - CIM) para desenvolver agentes interoperáveis e adequados a diferentes aplicações no setor elétrico. \\
-    \midrule
-        \multirow{3}{0.9in}{Segurança} & Investir em mecanismos para tornar segura a comunicação ponto-a-ponto utilizada pelos MAS. \\
-    \midrule
-        \multirow{2}{0.9in}{Agentes móveis} & Desenvolvimento de agentes móveis capazes de mover seus códigos fontes e dados. \\
-    \bottomrule
-    \end{tabular}
-\end{table}
+% Na \autoref{tab:desafios} são apresentados os principais desafios identificados pelos autores em [38], [39] para aplicação do MAS na automação de sistemas elétricos.
+
+% \begin{table}[!htb]
+%     \caption{Desafios para Avanço dos MAS no Setor Elétrico}
+%     \label{tab:desafios}
+%     \centering
+
+%     \begin{tabular}{p{0.9in} p{2.0in}}
+%     \toprule
+%     \multicolumn{1}{c}{\textbf{Critérios Principais}} & \multicolumn{1}{c}{\textbf{Subcritérios}} \\
+%     \midrule
+%     \midrule
+%          \multirow{5}{0.9in}{Plataformas} & Plataforma com arquitetura aberta com características flexível e extensível para assegurar robustez para aplicação online e compatibilidade com outros sistemas por um longo período. \\
+%     \midrule
+%         \multirow{4}{0.9in}{Toolkits} & As tookits devem permitir o desenvolvimento de agentes em que comportamentos e capacidades possam ser reutilizados em diversas aplicações. \\
+%     \midrule
+%         \multirow{3}{0.9in}{Arquiteturas de agentes} & Arquiteruras de agentes de fácil compreensão para facilitar o desenvolvimento de projetos de agentes inteligentes.\\
+%     \midrule
+%         \multirow{8}{0.9in}{Domínio dos padrões interoperáveis} & Profissionais da área de engenharia absover o conhecimento sobre comunicação de agentes no padrão FIPA e adotar ontologias baseadas nos padrões IEC 61.850 e IEC 61.970/61.968 (Common Information Model - CIM) para desenvolver agentes interoperáveis e adequados a diferentes aplicações no setor elétrico. \\
+%     \midrule
+%         \multirow{3}{0.9in}{Segurança} & Investir em mecanismos para tornar segura a comunicação ponto-a-ponto utilizada pelos MAS. \\
+%     \midrule
+%         \multirow{2}{0.9in}{Agentes móveis} & Desenvolvimento de agentes móveis capazes de mover seus códigos fontes e dados. \\
+%     \bottomrule
+%     \end{tabular}
+% \end{table}
 
 Em [42], os autores destacam as seguites características que o sistema de automação desenvolvido deve atender para garantir sua longevidade e manutenabilidade:
 
@@ -296,10 +306,10 @@ Essas funcionalidades foram criadas para compor um framework de desenvolvimento 
 \end{figure}
 
 
- PADE oferece os seguintes recursos em sua biblioteca para desenvolvimento de sistemas multiagentes:
+PADE oferece os seguintes recursos em sua biblioteca para desenvolvimento de sistemas multiagentes:
 
- \begin{itemize}
-   \item Abstração para construção de agentes e seus comportamentos utilizando conceitos de orientação a objetos;
+\begin{itemize}
+  \item Abstração para construção de agentes e seus comportamentos utilizando conceitos de orientação a objetos;
   \item Ambiente de execução de agentes, flexível e baseado em sessões de usuários;
   \item Módulo para construção e tratamento de mensagens no padrão FIPA-ACL;
   \item Módulo para filtragem de mensagens;
@@ -307,29 +317,22 @@ Essas funcionalidades foram criadas para compor um framework de desenvolvimento 
   \item Módulo para implementação de comportamentos cíclicos e temporais;
   \item Armazenamento de mensagens em banco de dados para análises futuras;
   \item Possibilidade de envio de objetos serializados como conteúdo das mensagens FIPA-ACL;
-  \item Interface gráfica de interação multiplataforma baseada em tecnologias web.
- \end{itemize}
+  \item Interface Gráfica (GUI) de interação multiplataforma baseada em tecnologias web;
+  \item Interface de Linha de Comando (CLI) para obtenção de informações relacionadas à sessões de agentes;
+  \item Abstração de execução de agentes em sessões, com registro de usuários com senha, permitindo maior segurança e isolamento no gerenciamento de diferentes sistemas multiagentes;
+  \item Esquema de tolerancia a faltas com replicação de agentes AMS;
+  \item Possibilidade de mobilidade de agentes entre diferentes plataformas de execução.
+\end{itemize}
 
-Além dessas funcionalidades, o PADE é de fácil instalação e configuração, multiplataforma, podendo ser instalado e utilizado em hardwares embarcados que executam sistema operacional Linux, como Raspberry Pi e BeagleBone Black, bem como sistema operacional Windows.
+Além dessas funcionalidades, o PADE é de fácil instalação e configuração, multiplataforma, podendo ser instalado e utilizado em hardwares que executam sistema operacional Linux ou Windows, bem como em hardwares embarcados com arquitetura de processador ARM como Raspberry Pi e BeagleBone Black.
 
-Além disso, como a linguagem de programação Python foi a utilizada para o desenvolvimento da plataforma muitas funcionalidades estão incluídas em suas bibliotecas padrões e nos inúmeros projetos que são desenvolvidos pela comunidade. Python possui algumas características importantes, que estimularam sua utilização e que contribuem para que projetos de sistemas de automação distribuídos sejam bem sucedidos, como por exemplo, ser software livre, multiplataforma, ter sintaxe fácil e concisa, além de estar sendo adotado por uma grande parcela da comunidade científica, muito por conta dos módulos numpy e scipy que implementam facilidades de manipulação de matrizes e algoritmos de uso geral como inversão de matrizes, cálculo de autovalores ou transformada de Fourier.
+Como a linguagem de programação Python foi utilizada para o desenvolvimento da plataforma muitas funcionalidades estão incluídas em suas bibliotecas padrões e nos inúmeros projetos que são desenvolvidos pela comunidade. Python possui algumas características importantes, que estimularam sua utilização e que contribuem para que projetos de sistemas de automação distribuídos sejam bem sucedidos, como por exemplo, ser software livre, multiplataforma, ter sintaxe fácil e concisa, além de estar sendo adotado por uma grande parcela da comunidade científica, muito por conta dos módulos numpy e scipy que implementam facilidades de manipulação de matrizes e algoritmos de uso geral como inversão de matrizes, cálculo de autovalores ou transformada de Fourier. Python também tem a vantagem de ser utilizado em ambientes de produção, ao contrário de outras linguagens de programação voltadas para ciência e engenharia que só são utilizadas na realização de simulações.
 
 \subsection{Framework Twisted}
 
-Twisted é um mecanismo de rede, assíncrono, baseado em eventos e escrito em Python. Twisted tem suporte aos protocolos mais comuns das camadas de transporte e aplicação da internet como: TCP, UDP, HTTP, SSH, IMAP, FTP, entre outros. Twisted implementa versões de cliente e servidor destes protocolos, assim como oferece ferramentas que facilitam sua manipulação e configuração [43].
-
-Twisted também oferece ferramentas de baixo nível para que protocolos genéricos sejam implementados na camada de aplicação de maneira fácil e rápida. Foram estas as ferramentas utilizadas no desenvolvimento do framework PADE.
-
-\subsubsection{Programação Assíncrona Orientada a Eventos} 
-
 Quando sistemas distribuídos são desenvolvidos baseados no paradigma de programação síncrona, existem duas escolhas para o desenvolvedor: não tratar requisições externas enquanto um evento é processado ou desenvolver a aplicação fazendo uso de threads, que por vezes pode introduzir complexidade extra ao software.
 
-No paradigma de programação assíncrona, o software desenvolvido continua podendo receber e tratar múltiplas conexões, mesmo enquanto está processando eventos anteriores, sem a necessidade de ter que controlar threads. Dessa forma, o paradigma de programação assíncrona contrasta com os outros dois possíveis tipos de programação, o single-thread síncrono e o multi-thread [43]:
-
-Single-thread síncrono: Neste paradigma de programação as ações realizadas pelo programa são executadas de forma serial. Se alguma tarefa for bloqueada, todas as outras tarefas do programa precisarão esperar o encerramento desta tarefa para que possam ser executadas. Este tipo de programação é o mais simples de ser implementado, mas para alguns casos pode sofrer com problemas de lentidão, que tornaria este tipo de implementação impraticável.
-Multi-thread: Neste paradigma de programação as tarefas de um determinado programa são executadas paralelamente por threads de controle diferentes. Isto permite que o software continue tratando eventos, mesmo com o bloqueio de uma determinada tarefa. No entanto, construir blocos de código que consumam recursos paralelamente de hardware pode não ser uma tarefa muito simples, o que aumenta bastante a complexidade do código a ser escrito.
-
-No paradigma single-thread assíncrono as tarefas de um determinado programa são executadas intercaladamente em um único thread de controle. Esse paradigma combina as vantagens de execução de programas com múltiplas threads, com a facilidade de implementação de um programa de thread única.
+No paradigma de programação assíncrona, no entanto, o software desenvolvido continua podendo receber e tratar múltiplas conexões, mesmo enquanto está processando eventos anteriores, sem a necessidade de ter que controlar threads[43].
 
 Na \autoref{fig:paradigs} é ilustrada a execução de um programa que precisa executar três tarefas, utilizando cada um dos paradigmas de programação citados.
 
@@ -340,13 +343,20 @@ Na \autoref{fig:paradigs} é ilustrada a execução de um programa que precisa e
     \end{center}
 \end{figure}
 
-Já o conceito de programação orientada a eventos (assíncrono), refere-se à característica do fluxo do programa ser determinado por eventos externos. Esse tipo de paradigma utiliza sempre um loop de eventos reactor loop assim como métodos que são chamados quando um evento acontece callbacks.  Na \autoref{fig:reactor} é mostrada uma representação do loop de eventos Twisted e da chamada de uma callback quando um evento é processado.
+No paradigma single-thread assíncrono as tarefas de um determinado programa são executadas intercaladamente em um único thread de controle. Esse paradigma combina as vantagens de execução de programas com múltiplas threads, com a facilidade de implementação de um programa de thread única.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=1.2in]{Figuras/reactor-callback.png}
-    \caption{\label{fig:reactor} \textit{Loop} de eventos do Twisted e chamada de uma \textit{callback}.}
-\end{figure}
+Twisted é um mecanismo de rede, assíncrono, baseado em eventos e escrito em Python. Twisted tem suporte aos protocolos mais comuns das camadas de transporte e aplicação da internet como: TCP, UDP, HTTP, SSH, IMAP e FTP, além de possibilitar a implementação de protocolos genéricos na camada de aplicação. 
+
+% Já o conceito de programação orientada a eventos (assíncrono), refere-se à característica do fluxo do programa ser determinado por eventos externos. Esse tipo de paradigma utiliza sempre um loop de eventos chamado (reactor loop) assim como métodos que são chamados quando um evento acontece (callbacks).  Na \autoref{fig:reactor} é mostrada uma representação do loop de eventos Twisted e da chamada de uma callback quando um evento é processado.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=1.2in]{Figuras/reactor-callback.png}
+%     \caption{\label{fig:reactor} \textit{Loop} de eventos do Twisted e chamada de uma \textit{callback}.}
+% \end{figure}
+
+% Single-thread síncrono: Neste paradigma de programação as ações realizadas pelo programa são executadas de forma serial. Se alguma tarefa for bloqueada, todas as outras tarefas do programa precisarão esperar o encerramento desta tarefa para que possam ser executadas. Este tipo de programação é o mais simples de ser implementado, mas para alguns casos pode sofrer com problemas de lentidão, que tornaria este tipo de implementação impraticável.
+% Multi-thread: Neste paradigma de programação as tarefas de um determinado programa são executadas paralelamente por threads de controle diferentes. Isto permite que o software continue tratando eventos, mesmo com o bloqueio de uma determinada tarefa. No entanto, construir blocos de código que consumam recursos paralelamente de hardware pode não ser uma tarefa muito simples, o que aumenta bastante a complexidade do código a ser escrito.
 
 \subsubsection{Componetes Básicos do Twisted}
 
@@ -356,11 +366,12 @@ Reactor: É o núcleo do Twisted, chamado também de loop principal. Este loop s
 
 Transport: Este componente fornece as interfaces necessárias para se estabelecer conexão entre dois pontos comunicantes em rede;
 
-Protocols: Twisted fornece interfaces que implementam como eventos relacionados a diversos protocolos da camada de aplicação devem ser tratados, como por exemplo, chamadas HTTP, Telnet, DNP, FTP, IMAP, entre outros. Mas, também, Twisted oferece as ferramentas necessárias para que protocolos customizados sejam construídos;
+Protocols: São as interfaces que implementam diversos protocolos da camada de aplicação, como por exemplo, chamadas HTTP, Telnet, DNP, FTP ou IMAP, assim como as interfaces necessárias para que protocolos customizados sejam construídos;
 
-Protocol Factories: Twisted instancia um objeto Protoco sempre que, por exemplo, uma nova conexão é realizada com um servidor. No entanto, esta instância é perdida assim que a conexão é encerrada, dessa forma todas as informações desta conexão são perdidas. Com o intuito de armazenar informações permanentes no protocolo, Twisted implementa o componente Protocol Factories de modo que informações pertinentes, como, por exemplo, quantos clientes estão conectados no servidor, sejam mantidas, mesmo depois que estas conexões sejam encerradas.
+Protocol Factories: Twisted instancia um objeto Protocol sempre que uma nova conexão é realizada com um servidor. No entanto, esta instância é perdida assim que a conexão é encerrada, dessa forma todas as suas informações são perdidas. Com o intuito de armazenar informações permanentes no protocolo, Twisted implementa o componente Protocol Factories de modo que informações importantes sejam mantidas, mesmo depois que estas conexões sejam encerradas.
 
 Na \autoref{fig:agentes_twisted} são mostrados os componentes do Twisted, que associados constituem o conceito de um agente na plataforma PADE. Conforme pode ser visto, um agente pode ser representado como a associação de:
+
 \begin{itemize}
   \item uma instância da classe ProtocolFactory;
   \item várias instâncias da classe Protocol, uma para cada nova conexão estabelecidada com o agente;
@@ -378,23 +389,23 @@ Na \autoref{fig:agentes_twisted} são mostrados os componentes do Twisted, que a
 
 \subsection{Python Agent DEvelopment framework}
 
-Nesta seção é mostrado a implementação de um framework para desenvolvimento de sistemas multiagentes: o Python Agent DEvelopemnt framework (PADE), que permite modelagem, execução e monitoramento de um MAS em ambiente distribuído. Entre muitas vantagens PADE possui uma abordagem clara e fácil fazendo uso da principal funcionalidade do Python: simplicidade, além de prover acesso facilitado entre agentes sendo executados em diferentes dispositivos.
+Nesta seção é mostrado a implementação do framework para desenvolvimento de sistemas multiagentes: o Python Agent DEvelopemnt framework (PADE), que permite modelagem, execução e monitoramento de um MAS em ambiente distribuído de maneira simples e direta.
+% Entre muitas vantagens PADE possui uma abordagem clara e fácil fazendo uso da principal funcionalidade do Python: simplicidade, além de prover acesso facilitado entre agentes sendo executados em diferentes dispositivos.
 
-Utilizando como base de implementação o framework Twisted, foi desenvolvido o PADE, um framework para desenvolvimento, gerenciamento e execução de MAS em Python. O PADE segue alguns dos padrões estabelecidos pela FIPA, que visam interoperabilidade entre MAS desenvolvidos em diferentes plataformas, buscando sempre uma abordagem de comunicação mais direta e objetiva.
+O PADE segue alguns dos padrões estabelecidos pela FIPA, que visam interoperabilidade entre MAS desenvolvidos em diferentes plataformas, buscando sempre uma abordagem de comunicação mais direta e objetiva.
 
 \subsubsection{Estrutura de Arquivos do PADE}
 
-O framework PADE é composto por sete módulos principais que agrupam suas funcionalidades. A seguir a descrição de cada um dos módulos PADE:
+O framework PADE é composto por módulos que agrupam suas funcionalidades. A seguir a descrição de cada um dos módulos PADE:
 
 \begin{itemize}
   \item acl: implementa alguns dos padrões FIPA de comunicação entre agentes, como por exemplo a possibilidade de composição de mensagens no padrão FIPA-ACL, definidos em [44]–[46].
   \item behaviours: implementa alguns dos comportamentos e protocolos definidos e padronizados pela FIPA para execução pelos agentes, [47]–[49];
   \item core: principal módulo do PADE, onde são implementados os algoritmos de cliente e servidor dos agentes por meio do framework Twisted. É nesse módulo que estão implementadas as funções de execução de agentes definidos pelo usuário e do AMS;
-  \item gui: onde estão implementadas as classes que definem a interface gráfica do AMS;
   \item web: implementa o servidor web que serve a interface gráfica do PADE e interage com o banco de dados de registro de sessões, agentes e mensagens;
   \item cli: implementa as funcionalidades de interação com a plataforma PADE por meio de uma interface de linha de comandos;
   \item misc: módulo onde estão implementadas algumas funcionalidades de uso geral, como, por exemplo, exibir mensagens de forma padronizada na tela e o loop de inicialização dos agentes;
-  \item tests: módulo de testes, a ser implementado futuramente.
+  \item tests: módulo de testes.
 \end{itemize}
 
 \subsubsection{Filosofia de Execução dos Agentes no Framework PADE} 
@@ -407,9 +418,9 @@ O núcleo do framework PADE consiste na funcionalidade de execução dos agentes
     \caption{\label{fig:uml_pade} Estrutura de classes do framework PADE no padrão UML.}
 \end{figure}
 
-Todo agente desenvolvido com os módulos disponibilizados pelo framework deve herdar da classe Agent. Esta classe implementa um protocolo definido pelas bibliotecas do Twisted, e representados na Fig. 7 por meio das classes AgentProtocol e AgentFactory. Essa implementação permite que um agente comporte-se hora como cliente, hora como servidor, ou seja, um agente é um nó comunicante na rede, que pode inciar uma troca de mensagens, mas que também está disponível para responder solicitações de outros nós da rede, bastando que para isso os agentes conheçam os endereços uns dos outros.
+Todo agente desenvolvido com os módulos disponibilizados pelo framework deve herdar da classe Agent. Esta classe implementa um protocolo definido pelas bibliotecas do Twisted, e representados na \autoref{fig:uml_pade} por meio das classes AgentProtocol e AgentFactory. Essa implementação permite que um agente comporte-se hora como cliente, hora como servidor, ou seja, um agente é um nó comunicante na rede, que pode inciar uma troca de mensagens, mas que também está disponível para responder solicitações de outros nós da rede, bastando que para isso os agentes conheçam os endereços uns dos outros.
 
-Um agente na plataforma é identificado pelo seu AID (Agent IDentifier) que tem a seguinte composição:  nome local@endereçoIPdoagente:porta. Um exemplo de AID para um agente de nome alimentador\_21I5 que é executado na máquina de IP 192.168.1.2 na porta 5002, seria: alimentador\_21I5@192.168.1.2:5001.
+Um agente na plataforma é identificado pelo seu AID (Agent IDentifier) que tem a seguinte composição, definida pela FIPA:  nome local@endereçoIPdoagente:porta. Um exemplo de AID para um agente de nome alimentador\_21I5 que é executado na máquina de IP 192.168.1.2 na porta 5002, seria: alimentador\_21I5@192.168.1.2:5001.
 
 \subsubsection{O Agente AMS}
 
@@ -419,30 +430,28 @@ No PADE, o AMS exerce funções de controle e supervisão e mantém uma tabela q
 
 No PADE, o AMS é um agente, e necessariamente deve ser o primeiro agente a ser lançado, já que os outros precisam do AMS para se cadastrar. 
 
-Cada agente lançado na plataforma deve enviar mensagem ao agente AMS identificando-se e, assim, ficando visível aos demais agentes. O processo de um agente que solicita identificação e do AMS que recebe e analisa o pedido pode ser representado por meio de um diagrama de atividades conforme mostrado na \autoref{fig:identificacao}.
+% \begin{figure}[!htb]
+%     \centering
+%     \includegraphics[width=3.2in]{Figuras/identificacao.eps}
+%     \caption{\label{fig:identificacao} Diagramas atividades do processo de identificação no PADE.}
+% \end{figure}
+
+% O diagrama mostrado na \autoref{fig:identificacao} descreve os comportamentos de:
+
+% \begin{itemize}
+%   \item solicitação de identificação: o agente que acabou de conectar-se à rede de comunicação envia seu AID ao AMS solicitando identificação e permissão para entrar na plataforma de agentes;
+%   \item análise de solicitação: o agente AMS recebe a solicitação do agente e verifica se o AID enviado já existe entre os AID dos agentes ativos na plataforma. Se nenhum dos agentes ativos estiver cadastrado com o AID solicitado, então o AMS envia mensagem de autorização para entrada do agente.
+%   \item resposta da solicitação: caso tenha seu pedido aceito, o agente recebe uma tabela com os endereços de todos os agentes presentes na plataforma e pode comunicar-se com cada um deles. Caso tenha seu pedido de identificação negado, o agente deve enviar uma nova proposta com AID diferente para o AMS.
+
+% \end{itemize}
+
+% Primeiro o agente Bob é executado. Bob se registra junto ao AMS que valida seu AID. Como não existe nenhum outro agente em execução na plataforma, nenhuma tabela é criada ou atualizada. Em seguida o agente Alice entra em execução registrando-se junto ao AMS, que valida seu AID, atualiza sua tabela de agentes ativos e distribui esta tabela aos demais agentes da rede, no caso para o agente Bob. Da mesma forma, o agente Eva também se registra junto ao AMS, que atualiza as tabelas de todos os agentes (Bob e Alice) com o novo agente disponível para comunicação. Essa situação é mostrada na \autoref{fig:diag_seq_1}.
+
+Cada agente lançado na plataforma deve enviar mensagem ao agente AMS identificando-se e, assim, ficando visível aos demais agentes. No PADE, cada agente possui uma tabela com o nome e o endereço de cada agente em execução na plataforma. Essa tabela é distribuída e atualizada pelo AMS sempre que um agente entra ou sai da plataforma. Essa situação é mostrada na \autoref{fig:diag_seq_1}, onde os agentes Agente\_1, Agente\_2 e Agente\_3, fazem seu registrojunto ao agente AMS e têm suas tabelas de comunicação atualizadas sempre que um novo agente entra na plataforma. Na Figura é mostrado a ocorrência de uma falha de identificação do Agente\_3, impedindo que seu endereço seja informado aos demais. Em uma segunda tentaiva a identificação ocorre com sucesso e o endereço do Agente\_3 é distribuído aos demais. 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=3.2in]{Figuras/identificacao.eps}
-    \caption{\label{fig:identificacao} Diagramas atividades do processo de identificação no PADE.}
-\end{figure}
-
-O diagrama mostrado na \autoref{fig:identificacao} descreve os comportamentos de:
-
-\begin{itemize}
-  \item solicitação de identificação: o agente que acabou de conectar-se à rede de comunicação envia seu AID ao AMS solicitando identificação e permissão para entrar na plataforma de agentes;
-  \item análise de solicitação: o agente AMS recebe a solicitação do agente e verifica se o AID enviado já existe entre os AID dos agentes ativos na plataforma. Se nenhum dos agentes ativos estiver cadastrado com o AID solicitado, então o AMS envia mensagem de autorização para entrada do agente.
-  \item resposta da solicitação: caso tenha seu pedido aceito, o agente recebe uma tabela com os endereços de todos os agentes presentes na plataforma e pode comunicar-se com cada um deles. Caso tenha seu pedido de identificação negado, o agente deve enviar uma nova proposta com AID diferente para o AMS.
-
-\end{itemize}
-
-No PADE, assim como o AMS, cada agente possui uma tabela com o nome e o endereço de cada agente em execução na plataforma. Essa tabela é distribuída e atualizada pelo AMS sempre que um agente entra ou sai da plataforma. Essa situação pode ficar bem clara por meio de um exemplo.
-
-Os agentes Bob, Eva e Alice, inicialmente estão fora da plataforma PADE. Primeiro o agente Bob é executado. Bob se registra junto ao AMS que valida seu AID. Como não existe nenhum outro agente em execução na plataforma, nenhuma tabela é criada ou atualizada. Em seguida o agente Alice entra em execução registrando-se junto ao AMS, que valida seu AID, atualiza sua tabela de agentes ativos e distribui esta tabela aos demais agentes da rede, no caso para o agente Bob. Da mesma forma, o agente Eva também se registra junto ao AMS, que atualiza as tabelas de todos os agentes (Bob e Alice) com o novo agente disponível para comunicação. Essa situação é mostrada na \autoref{fig:diag_seq_1}.
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=3.2in]{Figuras/alice_bob_eva.eps}
+    \includegraphics[width=3.2in]{Figuras/diag_ident.eps}
     \caption{\label{fig:diag_seq_1}Registro e atualização de tabela de agentes.}
 \end{figure}
 
@@ -450,21 +459,35 @@ Dessa forma quando um agente deseja se comunicar com outro, busca em sua própri
 
 No PADE, o agente AMS também tem a função de armazenar as mensagens trocadas pelos agentes, que sempre que recebem uma mensagem, enviam uma cópia ao AMS.
 
+Assim o agente AMS é o agente mais importante da rede com as seguintes atribuições:
+
+\begin{itemize}
+  \item registro de agentes;
+  \item monitoramento dos agentes;
+  \item atualização da tabela de agentes ativos;
+  \item registro das mensagens trocadas entre os agentes;
+  \item envio de comandos de suspenção de comportamento e desativação de agentes;
+\end{itemize}
+
+Com essas atribuições o AMS é essencial para o funcionamento da plataforma de agentes, sendo necessário um esquema de replicação para que o SMA seja tolerante a falhas.
+
 \subsubsection{Interface Gráfica do PADE}
 
 A interface gráfica do PADE é provida por um servidor WEB que tem comunicação direta com o banco de dados da aplicação e gerencia o acesso às informações disponibilizadas sobre as sessões da plataforma, os agentes executados e também sobre as mensagens trocadas.
 
-Na  \autoref{fig:guis} é mostrada a janela principal da interface gráfica WEB do PADE, que exibe as sessões já executadas na plataforma. Nas sessões estão presenteas os agentes executados na sessão e em cada agente é possível verificar quais mensagens foram recebidas pelo agente, e quais as informações estavam contidas na mensagem. Em resumo a interface gráfica WEB é uma interface amigável e organizada de consultar as informações contidas no banco de dados do PADE. Outra funcionalidade muito útil da interface gráfica WEB é a exibição das trocas de mensagens entre os agentes em forma de diagrama de sequência.
+Na  \autoref{fig:guis} é mostrada a janela principal da interface gráfica WEB do PADE, que exibe as sessões já executadas na plataforma. Nas sessões estão presenteas os agentes executados na sessão e em cada agente é possível verificar quais mensagens foram recebidas pelo agente, e quais as informações estavam contidas na mensagem. A interface gráfica WEB é uma interface amigável e organizada de consulta às informações contidas no banco de dados do PADE. Também está presente no PADE a funcionalidade de exibição das trocas de mensagens entre os agentes em forma de diagrama de sequência, mostrada na \autoref{fig:guis}.
 
-\begin{figure}[!htb]
-        \centering
-        \includegraphics[width=2.0in]{Figuras/web_gui.png}
-        \caption{\label{fig:guis} Interface gráfica de registro de sessões no PADE.}
-\end{figure} 
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{cc}
+    \includegraphics[height=2.5in]{Figuras/web_gui.png} & 
+    \includegraphics[height=2.5in]{Figuras/troca-de-mensagens.png}\\
+  \end{tabular} 
+\end{table}
 
 \subsubsection{Estrutura de um Agente Modelado no PADE}
 
-A estrura de código de um agente modelado por meio do framework PADE é bem simples e tem um padrão definido. Este padrão consiste em:
+A estrura de código de um agente modelado por meio do framework PADE tem um padrão bem definido. Este padrão consiste em:
 
 \begin{itemize}
     \item classes que herdam de um comportamento/protocolo disponibilizado pelo PADE;
@@ -481,19 +504,50 @@ Por exemplo, para implementar um comportamento do tipo Contractnet Iniciante no 
     \caption{\label{fig:agente_alimentador_uml} Diagrama de classes UML de um agente que tem um comportamento FIPA ContractNet associado.}
 \end{figure}
 
+O algoritmo escrito em Python com uso dos pacotes fornecidos pelo PADE estão mostrados na \autoref{fig:codigo}. É possível identificar três partes bem definidas no código mostrado na \autoref{fig:codigo}. 
+
+No início são importadas as bibliotecas do PADE a serem utilizadas, são essas bibliotecas que permitirão ao desenvolvedor modelar agentes com capacidade de comunicação via protocolos de comunicação e execução de comportamentos em paralelo.
+
+Em seguida é possível observar a definição da classe que definine o agente, no código a classe \textit{AgentHelloWorld}, é nesta classe onde os comportamentos são definidos e enumerados.
+
+Na segunda parte do código os agentes são instanciados e a sessão de agentes é instanciada, com nome de usuário e senha, esta abordagem do pade permite a execução de diversas sessões de agentes independentes entre sí e com nível de isolação definido pelas credenciais de usuário.
+
+Na última linha de código é iniciado o loop de execução do PADE. Como parâmetro para o loop de execução é passado um objeto que instancia a sessão com os agentes a serem executados e os usuários que terão permissão para gerenciar os agentes da sessão.
+
+\begin{figure}[htb]
+  \centering
+  \lstinputlisting[language=Python,showstringspaces=false,stepnumber=1,breaklines=true,lastline=50,basicstyle=\footnotesize]{agente_teste_1.py}
+  \caption{\label{fig:codigo}Exemplo simples de execução de agente em PADE.}
+\end{figure}
+
 \section{Caso Teste}
 
-Nesta sessão será apresentada a utilização do framework PADE para o desenvolvimento de um sistema multiagente de recomposição automática de alimentadores da rede elétrica de distribuição. O sistema de recomposição deve ser capaz de, na ocorrência de uma falta, identificar o setor faltoso, isolá-lo do restante da rede e recompor os setores desenergizados, mas que não possuem defeito. Isso pode ser feito por que existem chaves normalmente fechadas (NF) ao longo da rede que são utilizadas para isolar os setores defeituosos e chaves normalmente abertas (NA) entre alimentadores distintos que podem ser utilizadas para reenergizar o alimentador por outros caminhos.
+Nesta sessão será apresentada a utilização do framework PADE para o desenvolvimento de um sistema multiagente de recomposição automática de alimentadores da rede elétrica de distribuição. O sistema de recomposição deve ser capaz de, na ocorrência de uma falta, identificar o setor faltoso, isolá-lo do restante da rede e recompor os setores desenergizados, mas que não possuem defeito. Isso pode ser feito por que existem chaves normalmente fechadas (NF) ao longo da rede que são utilizadas para isolar os setores defeituosos e chaves normalmente abertas (NA) entre alimentadores distintos que podem ser utilizadas para reenergizar o alimentador por outros caminhos. Essas chaves são controladas por dispositivos de proteção e controle (IED) que possuem autonomia e comunicação.
 
-O problema da recomposição da rede elétrica mediante a ocorrência de uma falta é tratado como um problema de otimização com múltiplos objetivos, conflitantes entre sí, pois é necessário maximizar o número de consumidores re-energizados, mas com o menor número de manobras possíveis e respeitando as restrições operacionais do sistema, como por exemplo, sobrecarga das fontes e dos condutores da rede.
+No processo de recomposição da rede elétrica são realizadas análises dos dados operacionais e topológicos da rede com o objetivo de, após a recomposição, maximizar o número de consumidores re-energizados, mas com o menor número de manobras possíveis e respeitando as restrições operacionais do sistema, como por exemplo, sobrecarga das fontes e dos condutores da rede.
+
+A utilização de sistemas multiagetes em sistemas de recomposição automática foi proposta em [?]. Propostas de SMRA vêm sendo sugeridas desde então utilizando diferentes topologias de agentes e recursos de execução e comunicação entre agentes e entre equipamentos. Nesta seção será apresentada uma topologia de SMRA proposta em [?], onde os agentes e seus comportamentos foram modelados e executados utilizando a plataforma PADE em diferentes componentes de hardware. A rede de comunicação TCP é utilizada em dois níveis:
+
+\begin{itemize}
+  \item troca de informações entre agentes;
+  \item Monitoramento do estado da rede e envio de comando aos IED.
+\end{itemize}
+
+Os dois níveis de comunicação podem ser observados na \autoref{fig:com}. A comunicação no nível agentes IED é realizada utilizando os protocolos definidos pela norma para sistemas de comunicação em subestações de energia elétrica IEC 61850, MMS e GOOSE. Foram implementados drivers de comunicação de modo que os agentes pudessem se comunicar com os IED utilizando os protocolos da norma. Já a comunicação no nível de agentes é realizada utilizando os protocolos FIPA-ACL, disponibilizados pelo PADE.  
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=3.3in]{Figuras/agentes_ieds.jpg}
+  \caption{\label{fig:com}Topologia de comunicação do SMRA com IED e entre agentes.}
+\end{figure}
 
 O SMRA é composto por dois tipos de agentes apenas, o agente Alimentador (AA) e o agente Dispositivo (AD). Esses dois tipos de agentes estão ambarcados em hardwares distribuídos nas subestações do sistema elétrico em questão, conectados via rede de dados. Para cada alimentador físico das subestações, existe um hardware onde estão presentes um par AA e AD.
 
 O agente Alimentador possui as principais funcionalidades do sistema de recomposição, automático. É de responsabilidade do agente alimentador, negociar potência com os demais agentes alimentadores, que podem realizar uma restauração e também analisar as restrições da rede por meio da execução de ferramentas como fluxo de carga.
 
-O agente Dispositivo tem o papel de detectar qualquer problema que cause a desenergização dos setores do alimentador, isolar o setor do sistema que está sob falta e enviar comandos de abertura ou fechamento para os IED que controlam as chaves presentes na rede. É o agente Dispositivo que se comunica diretamente com os IED do sistema, portanto, os AD precisam ter implementados os protocolos de comunicação utilizados pelos IED. Neste caso teste os protocolos utilizados foram os estabelecidos pela norma IEC 61850, GOOSE e MMS.
+O agente Dispositivo tem o papel de detectar qualquer problema que cause a desenergização dos setores do alimentador, isolar o setor do sistema que está sob falta e enviar comandos de abertura ou fechamento para os IED que controlam as chaves presentes na rede. É o agente Dispositivo quem se comunica diretamente com os IED do sistema, portanto, para que esta comunicação aconteça os AD precisam ter drivers com os protocolos de comunicação utilizados pelos IED.
 
-Na \autoref{fig:rede_6_b} é mostrado um sistema elétrico simplificado com duas subestações S1 e S2. A subestação S1 possui dois alimentadores S1\_AL1, que alimenta os setores A, B, C e F e o alimentador S1\_AL2 que alimenta os setores G, H e I. Na subestação S2 existe apenas um alimenador, o S2\_AL1 que alimenta dos setores D e E. Na representação adotada, as chaves NF são as linhas contínuas entre os setores, já as chaves NA são representadas por linhas racejadas.
+Na \autoref{fig:rede_6_b} é mostrado um sistema elétrico simplificado com duas subestações S1 e S2. A subestação S1 possui dois alimentadores S1\_AL1, que alimenta os setores A, B, C e F e o alimentador S1\_AL2 que alimenta os setores G, H e I. Na subestação S2 existe apenas um alimenador, o S2\_AL1 que alimenta dos setores D e E. Na representação adotada, as chaves NF são as linhas contínuas entre os setores, já as chaves NA são representadas por linhas tracejadas.
 
 \begin{figure}[htb]
     \centering
@@ -524,7 +578,15 @@ A configuração final da recomposição pode ser visualizada na \autoref{fig:re
     \caption{\label{fig:rede_recomposta} Topologia da rede após a poda do setor F do alimentador S2-AL1.}
 \end{figure}
 
-Foram realizados testes e simulações com o SMRA desenvolvido utilizando o PADE. Foram utilizados na infraestrutura de testes três IED SEL-751 reais e comunicando via protocolos IEC 61850, interconectados por meio de um switch de rede também da SEL. Aos IED foi conectada uma mala de testes Conprove CE-6006 que simula o secundário do TC na ocorrência de uma falta na rede elétrica. Os agentes estão embarcados em computadores e hardwares Raspberry Pi e BeagleBone Black, conforme mostrado na arquitetura da \autoref{fig:top_teste}. Para cada alimentador físico das subestações, existe um hardware onde estão presentes um par AA e AD.
+A troca de informações entre os agentes pode ser visualizada na \autoref{fig:seqdiag}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=3.5in]{Figuras/diag_seq.eps}
+  \caption{\label{fig:seqdiag}Troca de informações entre agentes.}
+\end{figure}
+
+Foram realizados testes e simulações com o SMRA desenvolvido utilizando o PADE. Foram utilizados na infraestrutura de testes três IED de mercado com capacidade de comunicação via protocolos IEC 61850, interconectados por meio de um switch de rede. Aos IED foi conectada uma mala de testes que injeta sinais de corrente nas entradas analógicas dos IED simulando o secundário do TC na ocorrência de uma falta na rede elétrica. Os agentes estão embarcados em computadores e hardwares Raspberry Pi e BeagleBone Black, conforme mostrado na arquitetura da \autoref{fig:top_teste}. Para cada alimentador físico das subestações, existe um hardware onde estão presentes um par AA e AD.
 
 \begin{figure}[htb]
     \centering
@@ -637,20 +699,13 @@ Agradecemos ao CNPq e à Companhia Energética do Ceará pelo apoio e ao Departa
 % http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
 % The IEEEtran BibTeX style support page is at:
 % http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtran}
+
 % argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibliography{referencias}
 
-\end{thebibliography}
+
 
 \begin{IEEEbiographynophoto}{R. F. Furtado}
   Graduated in Electrical Engineering at University of Fortaleza, Brazil (1991). Received the Specialization in Computer Science (1993) degree and M.Sc. degree in Electrical Engineering at Federal University of Ceará in 2002. He worked in the State of Ceará utility (Coelce / ENDESA Group) in Brazil between 1985 and 2009. He is currently Professor in the Department of Electrical Engineering of the Federal University of Ceará. His current interests areas include renewable and distributed generation, automation and protection of electrical power systems and smartgrid.
